@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="js/unmute-v013.js" data-add-button="true"></script>
+    <script src="js/tone-v13.js" ></script>
+    <script src="js/nexusUI-v2.js"></script>
+    
+    <title>Bleep 9000</title>
+    
+    <style>
+        #oscPanel div[nx="dial"] {
+            width: 100%; /* three controls spread across full width */
+            height: 100%;
+            display: inline;
+        }
+        div#oscPanel {
+            width: 100%; /* two panels spread over the full width */
+            height: 100%;
+            float: left;
+            border-radius: 3px;
+            background-color : rgb(220,230,30);
+            
+            text-align: center;
+        }
+        .button {
+            background-color: #6400c8;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body id="mainBody" width="100%" height="100%">
+
+<div id="oscPanel">
+    <div nx="dial" id="control1">Wave</div>
+</div>
+
+<button id="daButton" class="button">Button</button>
+
+
+<script>
+    
+    Nexus.colors.fill = "black";
+    Nexus.colors.accent = "red";
+    var control1 = new Nexus.Dial("#control1");
+    var daButton = document.getElementById("daButton");
+    
+    var osc = new Tone.Oscillator(220, "square").toMaster();
+    var lfo = new Tone.LFO(8.5, 180, 230).start();
+    lfo.phase.value = 0.2;
+    lfo.connect(osc.frequency);
+    
+    //daButton.style.backgroundColor = defaultColor;
+    
+    var redAmount = 100;
+    var greenAmount = 100;
+    var blueAmount = 200;
+    
+    var defaultColor = "rgb(" +
+    redAmount + ',' +
+    greenAmount + ',' +
+    blueAmount + ')';
+    
+    control1.on("change", function(nexusData){
+        //osc.harmonicity.value = nexusData;
+                lfo.frequency.value = nexusData * 10 + 2;
+        
+        greenAmount = Math.round(255 * nexusData);
+        defaultColor = "rgb(" +
+        redAmount + ',' +
+        greenAmount + ',' +
+        blueAmount + ')';
+        
+        daButton.style.backgroundColor = defaultColor;
+    });
+    
+    function mouseDownEvent(event) {
+        daButton.style.backgroundColor = "yellow";
+        osc.start();
+    }
+
+    function mouseUpEvent(event) {
+        daButton.style.backgroundColor = defaultColor;
+        osc.stop();
+    }
+
+    daButton.addEventListener('mousedown', mouseDownEvent, true);
+    daButton.addEventListener('mouseup', mouseUpEvent, true);
+</script>
+</body>
+</html>
