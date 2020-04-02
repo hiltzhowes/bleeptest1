@@ -43,7 +43,7 @@
     <div nx="dial" id="control1">Wave</div>
 </div>
 
-<div id="daButton" class="button">Button</div>
+<button id="daButton" class="button" ontouchstart = "buttonTouch()" ontouchend "buttonRelease()">Bleepit</button>
 
 
 <script>
@@ -79,20 +79,20 @@
         daButton.style.backgroundColor = defaultColor;
     });
     
-    function mouseDownEvent(event) {
+    function buttonTouch(event) {
         daButton.style.backgroundColor = "yellow";
         osc.start();
     }
 
-    function mouseUpEvent(event) {
+    function buttonRelease(event) {
         daButton.style.backgroundColor = defaultColor;
         osc.stop();
     }
 
     //daButton.ontouchstart = mouseDownEvent;
     //dabutton.ontouchend = mouseUpEvent;
-    daButton.addEventListener('ontouchstart', mouseDownEvent, true);
-    daButton.addEventListener('ontouchend', mouseUpEvent, true);
+    //daButton.addEventListener('ontouchstart', mouseDownEvent, true);
+    //daButton.addEventListener('ontouchend', mouseUpEvent, true);
 </script>
 </body>
 </html>
