@@ -43,7 +43,7 @@
     <div nx="dial" id="control1">Wave</div>
 </div>
 
-<button id="daButton" class="button" ontouchstart = "buttonTouch()" ontouchend "buttonRelease()">Bleepit</button>
+<button id="daButton" class="button" ontouchstart = "buttonTouch()" ontouchend "buttonRelease()">cancuon</button>
 
 
 <script>
@@ -79,12 +79,12 @@
         daButton.style.backgroundColor = defaultColor;
     });
     
-    function buttonTouch(event) {
+    function buttonTouch() {
         daButton.style.backgroundColor = "yellow";
         osc.start();
     }
 
-    function buttonRelease(event) {
+    function buttonRelease() {
         daButton.style.backgroundColor = defaultColor;
         osc.stop();
     }
