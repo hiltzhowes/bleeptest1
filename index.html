@@ -82,12 +82,12 @@
         daButton.style.backgroundColor = defaultColor;
     });
     
-    function mouseDownEvent(event) {
+    function ontouchcancel(event) {
         daButton.style.backgroundColor = "yellow";
         osc.start();
     }
 
-    function mouseUpEvent(event) {
+    function ontouchstart(event) {
         daButton.style.backgroundColor = defaultColor;
         osc.stop();
     }
