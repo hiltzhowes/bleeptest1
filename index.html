@@ -43,7 +43,7 @@
     <div nx="dial" id="control1">Wave</div>
 </div>
 
-<div ontouchend="mouseDownEvent()" id="daButton" class="button">Button</div>
+<div id="daButton" class="button">Button</div>
 
 
 <script>
@@ -89,10 +89,10 @@
         osc.stop();
     }
 
-    daButton.ontouchstart = mouseDownEvent;
+    //daButton.ontouchstart = mouseDownEvent;
     //dabutton.ontouchend = mouseUpEvent;
-    //daButton.addEventListener('mousedown', mouseDownEvent, true);
-    //daButton.addEventListener('mouseup', mouseUpEvent, true);
+    daButton.addEventListener('ontouchstart', mouseDownEvent, true);
+    daButton.addEventListener('ontouchend', mouseUpEvent, true);
 </script>
 </body>
 </html>
