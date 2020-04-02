@@ -44,6 +44,8 @@
 </div>
 
 <button id="daButton" class="button" ontouchstart = "buttonTouch()" ontouchend "buttonRelease()">cancuon</button>
+    
+<button ontouchstart = "touchstart()" ontouchend = "touchend()">Touch this button m8.</button>
 
 
 <script>
@@ -88,6 +90,17 @@
         daButton.style.backgroundColor = defaultColor;
         osc.stop();
     }
+    
+    
+    
+    function touchstart() {
+        osc.start();
+    }
+
+    function touchend() {
+        osc.stop();
+    }
+    
 
     //daButton.ontouchstart = mouseDownEvent;
     //dabutton.ontouchend = mouseUpEvent;
