@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="unmute-v013.js" data-add-button="true"></script>
-    <script src="tone-v13.js" ></script>
-    <script src="nexusUI-v2.js"></script>
+    <script src="js/unmute-v013.js" data-add-button="true"></script>
+    <script src="js/tone-v13.js" ></script>
+    <script src="js/nexusUI-v2.js"></script>
     
     <title>Bleep 9000</title>
     
@@ -54,11 +54,9 @@
     var daButton = document.getElementById("daButton");
     
     var osc = new Tone.Oscillator(220, "square").toMaster();
-    var lfo = new Tone.LFO(8.5, 180, 230).start();
+    var lfo = new Tone.LFO(8.5, 220, 280).start();
     lfo.phase.value = 0.2;
     lfo.connect(osc.frequency);
-    
-    //daButton.style.backgroundColor = defaultColor;
     
     var redAmount = 100;
     var greenAmount = 100;
@@ -70,8 +68,7 @@
     blueAmount + ')';
     
     control1.on("change", function(nexusData){
-        //osc.harmonicity.value = nexusData;
-                lfo.frequency.value = nexusData * 10 + 2;
+        lfo.frequency.value = nexusData * 10 + 1;
         
         greenAmount = Math.round(255 * nexusData);
         defaultColor = "rgb(" +
@@ -82,18 +79,20 @@
         daButton.style.backgroundColor = defaultColor;
     });
     
-    function ontouchcancel(event) {
+    function mouseDownEvent(event) {
         daButton.style.backgroundColor = "yellow";
         osc.start();
     }
 
-    function ontouchstart(event) {
+    function mouseUpEvent(event) {
         daButton.style.backgroundColor = defaultColor;
         osc.stop();
     }
 
-    daButton.addEventListener('ontouchstart', ontouchstart, true);
-    daButton.addEventListener('ontouchcancel', ontouchcancel, true);
+    daButton.onclick = daButton.ontouchstart = mouseDownEvent;
+    daButton.onclick = dabutton.ontouchend = mouseUpEvent;
+    //daButton.addEventListener('mousedown', mouseDownEvent, true);
+    //daButton.addEventListener('mouseup', mouseUpEvent, true);
 </script>
 </body>
 </html>
