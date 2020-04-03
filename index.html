@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="unmute-v013.js" data-add-button="true"></script>
-    <script src="tone-v13.js" ></script>
-    <script src="nexusUI-v2.js"></script>
-    <script src="nexusUI-v1.js"></script>
+    <script src="js/unmute-v013.js" data-add-button="true"></script>
+    <script src="js/tone-v13.js" ></script>
+    <script src="js/nexusUI-v2.js"></script>
+    <script src="js/nexusUI-v1.js"></script>
 
 
 <title>Testing Bleeps</title>
   
 <style>
-    #oscPanel div[nx="dial"] {
-        width: 100%; /* three controls spread across full width */
-        height: 100%;
-        display: inline;
-    }
+
     div#oscPanel {
         width: 100%; /* two panels spread over the full width */
         height: 100%;
@@ -32,11 +28,13 @@
         -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
         }
+
 </style>
 
 <div id="oscPanel">
-    <div nx="dial" id="control1"></div>
-    <div nx="dial" id="control2"></div>
+    <div nx="dial" id="control1">
+    <div nx="dial" id="control2">
+    <div nx="slider" id="slider1">
 </div>
  
 <div class="centred">
@@ -53,6 +51,9 @@
 
     var control1 = new Nexus.Dial("#control1");
     var control2 = new Nexus.Dial("#control2");
+    var slider1 = new Nexus.Slider("#slider1");
+    
+    //slider1.resize(100,200);
 
     var button = document.getElementById("button");
     button.width = window.innerWidth;
